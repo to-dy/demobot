@@ -34,7 +34,10 @@ export default class App {
             query,
             limit: 5,
         }, (err, url, meta) => {
-            if (err) throw err;
+            if (err) {
+                console.error('error => ', err)
+                bot.reply('There was an error processing your request from the server.. 😭');
+            };
             const msg = `_You searched for => ${query}_\n*${meta.title}*\n${meta.desc}\n${url}`;
             if (url && meta.title && count <= 3) {
                 bot.replyWithMarkdown(msg);
